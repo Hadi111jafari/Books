@@ -7,3 +7,15 @@ class Book {
     this.author = author;
   }
 }
+
+// Store Classs: Hundles Storage
+class Store {
+  static getBooks() {
+    let books;
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+    return books;
+  }
