@@ -4,7 +4,7 @@ In Awesome Books you can add books you can remove books. and the intend of build
 ## Built With
 - html
 - css
--Javascript
+- Javascript
 
 
 ## Getting Started
@@ -28,6 +28,8 @@ Git(Version Control)
 
 - GitHub:(https://github.com/Hadi111jafari)
 - Linked In: (https://www.linkedin.com/in/abdul-hadi-jafari-85bb4b199/)
+
+
 👤 **Paul**
 
 - GitHub:(https://github.com/Ol-create)
