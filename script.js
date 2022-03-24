@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
 // Book Class: Represents a Book
 // eslint-disable-next-line max-classes-per-file
 class Book {
-  constructor(title, author) {
+  constructor(title, author, bookId) {
     this.title = title;
     this.author = author;
+    this.bookId = bookId;
   }
 }
 
@@ -26,10 +26,10 @@ class Store {
     localStorage.setItem('books', JSON.stringify(books));
   }
 
-  static removeBook(author) {
+  static removeBook(bookId) {
     const books = Store.getBooks();
     books.forEach((book, index) => {
-      if (book.author === author) {
+      if (book.bookId === bookId) {
         books.splice(index, 1);
       }
     });
@@ -53,6 +53,7 @@ class UI {
     row.innerHTML = `
          <td>${book.title}</td>
          <td>${book.author}</td>
+         <td>${book.bookId}</td>
          <td><a href="#" class="btn btn-danger btn-sm remove">Remove</a></td>
         `;
     list.appendChild(row);
@@ -67,6 +68,7 @@ class UI {
   static clearFields() {
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
+    document.getElementById('bookId').value = '';
   }
 }
 
@@ -79,8 +81,9 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
   //   GEt form values
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
+  const bookId = document.getElementById('bookId').value;
   // Instantiate book
-  const book = new Book(title, author);
+  const book = new Book(title, author, bookId);
   // Add book to UI
   UI.addBookToList(book);
   // Add book to Store
@@ -90,5 +93,8 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
 });
 // Event: Remove a Book
 document.getElementById('book-list').addEventListener('click', (e) => {
+  // Remove book from UI
   UI.removeBook(e.target);
+  // Remove book from Store
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 });
